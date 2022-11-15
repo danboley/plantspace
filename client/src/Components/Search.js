@@ -1,8 +1,10 @@
 
-function Search (){
+function Search ({ setSearch }){
     return (
-        <div>
-            Search
+        <div className="searchbar">
+            <label>Search</label>
+            <input type="search" placeholder="Search Plants..." onChange={(e) => setSearch(e.target.value)}
+            />
         </div>
     )
 }

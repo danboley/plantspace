@@ -3,7 +3,7 @@ class PlantsController < ApplicationController
   def index
     render json: Plant.all, status: :ok
   end
-  
+
   def create
     plant = @current_user.plants.create!(plant_params)
     render json: plant, status: :created
