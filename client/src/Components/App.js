@@ -2,8 +2,8 @@ import React, {useEffect, useState } from "react"
 
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
-import PlantContainer from "./PlantContainer";
-import Home from "./Home";
+import UserContainer from "./UserContainer";
+import PublicPlantContainer from "./PublicPlantContainer";
 import NewPlantForm from "./NewPlantForm";
 import Search from "./Search";
 import Login from "./Login";
@@ -11,8 +11,6 @@ import Signup from "./Signup";
 
 function App() {
   const [plants, setPlants] = useState([])
-  const [store, setStore] = useState([])
-  const [species, setSpecies] = useState([])
   const [search, setSearch] = useState("")
   const [currentUser, setCurrentUser] = useState(false)
 
@@ -20,18 +18,6 @@ function App() {
     fetch("/plants")
     .then((res) => res.json())
     .then((data) => setPlants(data))
-  },[])
-
-  useEffect(() => {
-    fetch("/stores")
-    .then((res) => res.json())
-    .then((data) => setStore(data))
-  },[])
-
-  useEffect(() => {
-    fetch("/species")
-    .then((res) => res.json())
-    .then((data) => setSpecies(data))
   },[])
 
       function addNewPlant(newPlantObj){
@@ -45,16 +31,16 @@ function App() {
 
       const updateUser = (user) => setCurrentUser(user)
 
-      // const displayedPlants = plants.filter((plant) =>
-      //   plant.name.toLowerCase().includes(search.toLowerCase())
-      // )
+      const displayedPlants = plants.filter((plant) => {
+        return plant.name?.toLowerCase().includes(search.toLowerCase())
+      })
 
   return (
     <div className="App">
         <NavBar/>
         <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route path="/PlantContainer" element={<PlantContainer plants={plants} deletePlant = {deletePlant} setSearch={setSearch} />} />
+            <Route exact path="/" element={<PublicPlantContainer/>} />
+            <Route path="/PlantContainer" element={<UserContainer plants={displayedPlants} deletePlant = {deletePlant} setSearch={setSearch} />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
