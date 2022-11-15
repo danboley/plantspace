@@ -10,41 +10,41 @@ import Login from "./Login";
 
 
 function App() {
-    const [plant, setPlant] = useState([])
-    const [store, setStore] = useState([])
-    const [species, setSpecies] = useState([])
-    const [search, setSearch] = useState("")
+  const [plants, setPlants] = useState([])
+  const [store, setStore] = useState([])
+  const [species, setSpecies] = useState([])
+  const [search, setSearch] = useState("")
 
-    useEffect(() => {
-        fetch("/plants")
-        .then((res) => res.json())
-        .then((data) => setPlant(data))
-      },[])
+  useEffect(() => {
+    fetch("/plants")
+    .then((res) => res.json())
+    .then((data) => setPlants(data))
+  },[])
 
-      useEffect(() => {
-        fetch("/stores")
-        .then((res) => res.json())
-        .then((data) => setStore(data))
-      },[])
+  useEffect(() => {
+    fetch("/stores")
+    .then((res) => res.json())
+    .then((data) => setStore(data))
+  },[])
 
-      useEffect(() => {
-        fetch("/species")
-        .then((res) => res.json())
-        .then((data) => setSpecies(data))
-      },[])
+  useEffect(() => {
+    fetch("/species")
+    .then((res) => res.json())
+    .then((data) => setSpecies(data))
+  },[])
 
-      function addNewPlant(newPlantObj){
-        setPlant(prev => [...prev, newPlantObj])
-      }
+  function addNewPlant(newPlantObj){
+    setPlants(prev => [...prev, newPlantObj])
+  }
 
-      function deletePlant(deletedPlant){
-        const updatedPlants = plant.filter((plants) => plants.id !== deletedPlant.id);
-        setPlant(updatedPlants)
-      }
+  function deletePlant(deletedPlant){
+    const updatedPlants = plants.filter((plants) => plants.id !== deletedPlant.id);
+    setPlants(updatedPlants)
+  }
 
-      // const displayedPlants = plant.filter((p) =>
-      //   p.name.toLowerCase().includes(search.toLowerCase())
-      // )
+  // const displayedPlants = plants.filter((p) =>
+  //   p.name.toLowerCase().includes(search.toLowerCase())
+  // )
 
   return (
     <div className="App">
@@ -52,7 +52,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Home/>} />
             <Route exact path="/login" element={<Login />} />
-            <Route path="/PlantContainer" element={<PlantContainer plants={plant} deletePlant = {deletePlant} setSearch={setSearch} />} />
+            <Route path="/PlantContainer" element={<PlantContainer plants={plants} deletePlant = {deletePlant} setSearch={setSearch} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
         </Routes>
     </div>
