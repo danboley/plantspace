@@ -5,7 +5,8 @@ class StoresController < ApplicationController
     end
 
     def create
-        render json: Store.create!(sto_params), status: :created
+        store = @current_user.stores.create!(sto_params)
+        render json: store, status: :created
     end
 
     private

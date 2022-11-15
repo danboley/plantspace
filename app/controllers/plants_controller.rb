@@ -1,10 +1,12 @@
 class PlantsController < ApplicationController
+  
   def index
     render json: Plant.all, status: :ok
   end
   
   def create
-    render json: Plant.create!(plant_params), status: :created
+    plant = @current_user.plants.create!(plant_params)
+    render json: plant, status: :created
   end
 
   private

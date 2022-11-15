@@ -6,6 +6,7 @@ import PlantContainer from "./PlantContainer";
 import Home from "./Home";
 import NewPlantForm from "./NewPlantForm";
 import Search from "./Search";
+import Login from "./Login";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <NavBar/>
         <Routes>
             <Route exact path="/" element={<Home/>} />
+            <Route exact path="/login" element={<Login />} />
             <Route path="/PlantContainer" element={<PlantContainer plants={plant} deletePlant = {deletePlant} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
         </Routes>
