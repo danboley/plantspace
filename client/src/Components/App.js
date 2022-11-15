@@ -12,6 +12,7 @@ function App() {
     const [plant, setPlant] = useState([])
     const [store, setStore] = useState([])
     const [species, setSpecies] = useState([])
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         fetch("/plants")
@@ -40,12 +41,16 @@ function App() {
         setPlant(updatedPlants)
       }
 
+      const displayedPlants = plant.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      )
+
   return (
     <div className="App">
         <NavBar/>
         <Routes>
             <Route exact path="/" element={<Home/>} />
-            <Route path="/PlantContainer" element={<PlantContainer plants={plant} deletePlant = {deletePlant} />} />
+            <Route path="/PlantContainer" element={<PlantContainer plants={plant} deletePlant = {deletePlant} setSearch={setSearch} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
         </Routes>
     </div>
