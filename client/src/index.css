@@ -23,3 +23,18 @@ code {
   margin: 4px 2px;
   cursor: pointer
 }
+
+.priCard{
+  background-color: rgb(150, 150, 247);
+}
+.navigation{
+  background-color: rgb(165, 247, 150);
+  padding: 20px;
+}
+.priImage{
+  height: 400px;
+  width: auto;
+}
+.navbtn{
+  padding-left: 25px;
+}
