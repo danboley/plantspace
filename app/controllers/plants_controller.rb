@@ -2,7 +2,7 @@ class PlantsController < ApplicationController
   def index
     render json: Plant.all, status: :ok
   end
-  
+
   def create
     render json: Plant.create!(plant_params), status: :created
   end

@@ -1,8 +1,9 @@
+import PublicPlantCard from "./PublicPlantCard";
 
 function Home (){
     return (
         <div>
-            Home
+            <PublicPlantCard/>
         </div>
     )
 }
