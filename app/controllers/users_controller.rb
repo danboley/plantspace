@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :authorize, only: :create
     def index
         render json: User.all, status: :ok
     end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     # modified for signup feat  
     def create
         user = User.create!(user_params)
-        session[:user_id] = user.id
+        # session[:user_id] = user.id
         render json: user, status: :created
     end
 

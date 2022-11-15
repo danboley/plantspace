@@ -7,13 +7,14 @@ import Home from "./Home";
 import NewPlantForm from "./NewPlantForm";
 import Search from "./Search";
 import Login from "./Login";
-
+import Signup from "./Signup";
 
 function App() {
   const [plants, setPlants] = useState([])
   const [store, setStore] = useState([])
   const [species, setSpecies] = useState([])
   const [search, setSearch] = useState("")
+  const [currentUser, setCurrentUser] = useState(false)
 
   useEffect(() => {
     fetch("/plants")
@@ -42,17 +43,20 @@ function App() {
         setPlants(updatedPlants)
       }
 
-      const displayedPlants = plants.filter((plant) =>
-        plant.name.toLowerCase().includes(search.toLowerCase())
-      )
+      const updateUser = (user) => setCurrentUser(user)
+
+      // const displayedPlants = plants.filter((plant) =>
+      //   plant.name.toLowerCase().includes(search.toLowerCase())
+      // )
 
   return (
     <div className="App">
         <NavBar/>
         <Routes>
             <Route exact path="/" element={<Home/>} />
-            <Route path="/PlantContainer" element={<PlantContainer plants={displayedPlants} deletePlant = {deletePlant} setSearch={setSearch} />} />
+            <Route path="/PlantContainer" element={<PlantContainer plants={plants} deletePlant = {deletePlant} setSearch={setSearch} />} />
             <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
         </Routes>
     </div>

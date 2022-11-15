@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login (){
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -34,6 +33,11 @@ function Login (){
                 r.json().then(json => setErrors(json.errors))
             }
         })
+    }
+
+    function onClick(e){
+        e.preventDefault()
+        navigate(`/signup`)
     }
 
     return (
@@ -72,8 +76,9 @@ function Login (){
                   onChange={(e) => setPassword(e.target.value)} 
                 />
                 <input type='submit' value='Log in!' />
+                <button onClick = {onClick}> Sign up!</button>
             </form>
-            {errors.map((err) => (<div>{err}</div>))} 
+            {errors? <div>{errors}</div>:null} 
         </>
     )
  }
