@@ -42,9 +42,9 @@ function App() {
         setPlant(updatedPlants)
       }
 
-      const displayedPlants = plant.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase())
-      )
+      // const displayedPlants = plant.filter((p) =>
+      //   p.name.toLowerCase().includes(search.toLowerCase())
+      // )
 
   return (
     <div className="App">
