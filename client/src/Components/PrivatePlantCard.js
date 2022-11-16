@@ -1,22 +1,25 @@
 
-function PrivatePlantCard (personalPlant){
+function PrivatePlantCard ({plant, deletePlant}){
 
     function handleWater(){
         console.log("WATER")
     }
 
-    function handleDelete(){
-        console.log("DELETE")
+    function handleDeleteClick(){
+        fetch (`/plants/${plant.id}`,{
+            method:"DELETE",
+        })
+        deletePlant(plant)
     }
 
     return (
         <div className = "priCard">
-            <div>{personalPlant.name}</div>
+            <div>{plant.name}</div>
             <div>Type of Plant: </div>
-            <img className="priImage" alt="placeholder" src={personalPlant.picture_url}></img>
+            <img className="priImage" alt="placeholder" src={plant.picture_url}></img>
             <div>Last Watered: </div>
             <button onClick={handleWater}>Need Water</button>
-            <button onClick={handleDelete}>Delete Plant</button>
+            <button className="remove" onClick={handleDeleteClick}>Delete Plant</button>
         </div>
     )
 }

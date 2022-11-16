@@ -55,8 +55,8 @@ function App() {
                 res.json().then(data => setErrors(data.error))
             }
         })
-    },[currentUser.id])
-
+       
+    },[currentUser.id, plants])
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj]);
       }
@@ -70,7 +70,7 @@ function App() {
       }
 
       function deletePlant(deletedPlant){
-        const updatedPlants = plants.filter((plants) => plants.id !== deletedPlant.id);
+        const updatedPlants = plants.filter((plant) => plant.id !== deletedPlant.id);
         setPlants(updatedPlants)
       }
 

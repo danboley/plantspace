@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     end
     
     # don't know if we need this
-    # def destroy
-    #     find_user.destroy
-    #     head :no_content
-    # end
+    def destroy
+        find_user.destroy
+        head :no_content
+    end
 
     private
 
