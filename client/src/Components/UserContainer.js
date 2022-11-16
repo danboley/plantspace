@@ -2,7 +2,6 @@ import PrivatePlantCard from "./PrivatePlantCard";
 // import PublicPlantCard from "./PublicPlantCard";
 import Search from "./Search";
 
-
 function PlantContainer ({ plants, setSearch }){
 
     const renderPlants = plants.map((plant) => {
