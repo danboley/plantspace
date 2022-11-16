@@ -26,6 +26,9 @@ code {
 
 .priCard{
   background-color: rgb(150, 150, 247);
+  padding: 20px;
+  width: 45%
+
 }
 .navigation{
   background-color: rgb(165, 247, 150);

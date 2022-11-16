@@ -5,17 +5,19 @@ import Search from "./Search";
 
 function PlantContainer ({ user }){
 
-    const userPlants = user.plants
+    // const userPlants = user.plants
 
-    // const renderPersonalPlants = userPlants.map((personalPlant) => {
-    //     return <PrivatePlantCard {...personalPlant} plant={personalPlant} key={personalPlant.id}/>
-    // })
-    //we will need to have a message if the user is not logged in that they will have to log in to view their plants
+    const renderPersonalPlants = user.plants.map((personalPlant) => {
+        return <PrivatePlantCard {...personalPlant} plant={personalPlant} key={personalPlant.id}/>
+    })
 
 return (
     <div>
-        {/* {userPlants === null ? "Please Login to View your plant library" :{renderPersonalPlants}} */}
-        <PrivatePlantCard/>
+        {/* {user === null ? "Please Login to View your plant library" : renderPersonalPlants} */}
+        {/* <div>{userPlants[0].name}</div>
+        <img src={userPlants[0].picture_url} alt="test"></img> */}
+        {renderPersonalPlants}
+        {/* <PrivatePlantCard/> */}
     </div>
 )
 }
