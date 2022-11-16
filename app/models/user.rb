@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :plants
+  has_many :plants, dependent: :destroy
   has_many :stores, through: :plants
   has_many :species, through: :plants
   # validates_presence_of :username, :first_name, :last_name
