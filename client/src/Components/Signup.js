@@ -19,10 +19,10 @@ function Signup({updateUser}){
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName, 
-        lastName,
-        username,
-        password
+        first_name: firstName, 
+        last_name: lastName,
+        username: username,
+        password: password
       }),
     }).then((r) => {
       if (r.ok) {

@@ -55,8 +55,8 @@ function App() {
                 res.json().then(data => setErrors(data.error))
             }
         })
-       
     },[currentUser.id])
+
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj]);
       }

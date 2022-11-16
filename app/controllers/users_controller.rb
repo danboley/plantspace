@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
 
     # for autologin feat
-    def show
+    def me
         render json: @current_user
     end
 

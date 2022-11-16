@@ -20,7 +20,7 @@ class PlantsController < ApplicationController
   end
 
   def destroy
-    find_pla.destroy_all
+    find_pla.destroy
     head :no_content
   end
 
