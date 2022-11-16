@@ -45,15 +45,15 @@ function App() {
   }, []);
 
       function addNewPlant(newPlantObj){
-        setPlants(prev => [...prev, newPlantObj])
+        setPlants(prev => [...prev, newPlantObj]);
       }
       
       function addNewStore(newStoreObj){
-        setStores(prev => [...prev, newStoreObj])
+        setStores(prev => [...prev, newStoreObj]);
       }
       
       function addNewSpecies(newSpeciesObj){
-        setSpecies(prev => [...prev, newSpeciesObj])
+        setSpecies(prev => [...prev, newSpeciesObj]);
       }
 
       function deletePlant(deletedPlant){
@@ -76,7 +76,7 @@ function App() {
             <Route exact path="/login" element={<Login updateUser={updateUser}/>} />
             <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/users/:id" element={<User updateUser = {updateUser}/>} />
-            <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />
+            <Route path="/NewPlantForm" element={<NewPlantForm user={currentUser} addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />
         </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 
-function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species}){
+function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species, user}){
     const [newPlantName, setNewPlantName] = useState("")
     const [newPicture, setNewPicture] = useState("")
     const [newStore, setNewStore] = useState("")
@@ -10,7 +10,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
     const [newStoreUrl, setNewStoreUrl] = useState("")
     const [newSpecies, setNewSpecies] = useState("")
     const [newSpeciesName, setNewSpeciesName] = useState("")
-    const [newSpeciesWatered, setNewSpeciesWatered] = useState(0)
+    const [newSpeciesWatered, setNewSpeciesWatered] = useState("")
     const [newSpeciesCare, setNewSpeciesCare] = useState("")
     const [newWaterTime, setNewWaterTime] = useState(new Date())
     const [expandSpecies, setExpandSpecies] = useState(false)
@@ -42,8 +42,8 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
         }).then((r) => {
             console.log(r)
             if (r.ok) {
-              r.json().then((user) => {
-               addNewStore(user)
+              r.json().then((data) => {
+               addNewStore(data)
                
           });
             } else {
@@ -67,9 +67,9 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
         }).then((r) => {
             console.log(r)
             if (r.ok) {
-              r.json().then((user) => {
-               addNewSpecies(user)
-       
+              r.json().then((data) => {
+               addNewSpecies(data)
+                
           });
             } else {
               r.json().then((err) => setErrors(err.errors));
@@ -82,6 +82,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
         const newPlantObj= {
             name: newPlantName,
             picture_url: newPicture,
+            user_id: parseInt(user.id),
             store_id: parseInt(newStore),
             species_id: parseInt(newSpecies),
             last_watered: newWaterTime,
@@ -91,7 +92,6 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newPlantObj)
         }).then((r) => {
-            console.log(r)
             if (r.ok) {
               r.json().then((user) => {
                addNewPlant(user)
