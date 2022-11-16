@@ -35,6 +35,12 @@ function Signup({updateUser}){
       }
     });
   }
+
+  function onClick(e){
+    e.preventDefault()
+    navigate(`/login`)
+  }
+
 return (
     <>
         <form onSubmit={onSubmit}>
@@ -71,6 +77,8 @@ return (
               onChange={(e) => setPassword(e.target.value)} 
             />
             <input type='submit' value='Sign up!' />
+            <label> Already have an account? </label>
+            <button onClick={onClick}> Log in! </button>
         </form>
         {errors? <div>{errors}</div>:null} 
     </>

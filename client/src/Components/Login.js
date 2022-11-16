@@ -78,6 +78,7 @@ function Login ({updateUser}){
                   onChange={(e) => setPassword(e.target.value)} 
                 />
                 <input type='submit' value='Log in!' />
+                <label> New user? </label>
                 <button onClick = {onClick}> Sign up!</button>
             </form>
             {errors? <div>{errors}</div>:null} 
