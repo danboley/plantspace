@@ -11,6 +11,8 @@ import Signup from "./Signup";
 
 function App() {
   const [plants, setPlants] = useState([])
+  const [species, setSpecies] = useState([])
+  const [stores, setStores] = useState([])
   const [search, setSearch] = useState("")
   const [currentUser, setCurrentUser] = useState(false)
 
@@ -18,10 +20,30 @@ function App() {
     fetch("/plants")
     .then((res) => res.json())
     .then((data) => setPlants(data))
+  },[stores,species])
+
+  useEffect(() => {
+    fetch("/species")
+    .then((res) => res.json())
+    .then((data) => setSpecies(data))
+  },[])
+
+  useEffect(() => {
+    fetch("/stores")
+    .then((res) => res.json())
+    .then((data) => setStores(data))
   },[])
 
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj])
+      }
+      
+      function addNewStore(newStoreObj){
+        setStores(prev => [...prev, newStoreObj])
+      }
+      
+      function addNewSpecies(newSpeciesObj){
+        setSpecies(prev => [...prev, newSpeciesObj])
       }
 
       function deletePlant(deletedPlant){
@@ -43,7 +65,7 @@ function App() {
             <Route path="/PlantContainer" element={<UserContainer plants={displayedPlants} deletePlant = {deletePlant} setSearch={setSearch} />} />
             <Route exact path="/login" element={<Login updateUser={updateUser}/>} />
             <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
-            <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
+            <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />
         </Routes>
     </div>
   );
