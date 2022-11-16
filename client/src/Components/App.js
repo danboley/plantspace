@@ -37,11 +37,11 @@ function App() {
 
   return (
     <div className="App">
-        <NavBar/>
+        <NavBar currentUser={currentUser} updateUser = {updateUser} />
         <Routes>
             <Route exact path="/" element={<PublicPlantContainer/>} />
             <Route path="/PlantContainer" element={<UserContainer plants={displayedPlants} deletePlant = {deletePlant} setSearch={setSearch} />} />
-            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/login" element={<Login updateUser={updateUser}/>} />
             <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm addNewPlant={addNewPlant} />} />
         </Routes>

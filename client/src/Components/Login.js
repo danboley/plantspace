@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 
-function Login (){
+function Login ({updateUser}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -28,12 +28,14 @@ function Login (){
             if(r.ok){
                 r.json().then(user => {
                     navigate(`/users/${user.id}`)
+                    updateUser(user)
                 })
             } else {
                 r.json().then(json => setErrors(json.errors))
             }
         })
     }
+
 
     function onClick(e){
         e.preventDefault()
