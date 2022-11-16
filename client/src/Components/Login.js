@@ -22,7 +22,7 @@ function Login ({updateUser}){
         .then(r => {
             if(r.ok){
                 r.json().then(user => {
-                    navigate(`/users/${user.id}`)
+                    navigate(`/`)
                     updateUser(user)
                 })
             } else {
