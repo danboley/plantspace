@@ -16,6 +16,7 @@ function App() {
   const [stores, setStores] = useState([])
   const [search, setSearch] = useState("")
   const [currentUser, setCurrentUser] = useState(false)
+  const [errors, setErrors] = useState(false)
 
   useEffect(() => {
     fetch("/plants")
@@ -44,6 +45,19 @@ function App() {
     });
   }, []);
 
+      useEffect(()=>{
+        fetch(`/users/${currentUser.id}`)
+        .then(res => {
+            if(res.ok){
+                res.json().then(user => {
+                    setCurrentUser(user)
+                })
+            }else {
+                res.json().then(data => setErrors(data.error))
+            }
+        })
+       
+    },[currentUser.id])
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj]);
       }
@@ -66,7 +80,6 @@ function App() {
       const displayedPlants = plants.filter((plant) => {
         return plant.name?.toLowerCase().includes(search.toLowerCase())
       })
-
   return (
     <div className="App">
         <NavBar currentUser={currentUser} updateUser = {updateUser} />

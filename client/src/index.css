@@ -26,6 +26,9 @@ code {
 
 .priCard{
   background-color: rgb(150, 150, 247);
+  padding: 20px;
+  width: 45%
+
 }
 .navigation{
   background-color: rgb(165, 247, 150);
@@ -49,6 +52,6 @@ code {
   box-shadow: 0 8px 6px -6px black;
 }
 .truePlantCon{
-  columns: 100px 3;
-  flex-flow: column wrap
+  /* columns: 100px 3;
+  flex-flow: column wrap */
 }

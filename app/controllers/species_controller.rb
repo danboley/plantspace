@@ -5,8 +5,7 @@ class SpeciesController < ApplicationController
   end
 
   def create
-    species = @current_user.species.create!(spe_params)
-    render json: species, status: :created
+    render json: Species.create!(spe_params), status: :created
   end
 
   private
