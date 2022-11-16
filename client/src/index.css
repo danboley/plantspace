@@ -38,3 +38,17 @@ code {
 .navbtn{
   padding-left: 25px;
 }
+.pubPlant{
+  height: 300px;
+  width:auto;
+  max-width: 250px
+}
+.pubPlantCard{
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 8px 6px -6px black;
+}
+.truePlantCon{
+  columns: 100px 3;
+  flex-flow: column wrap
+}

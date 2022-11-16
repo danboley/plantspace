@@ -1,11 +1,23 @@
 
-function PublicPlantCard (){
+function PublicPlantCard (plant){
+
+    const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    function handleDecision(){
+        if (plant.store.store_url === ""){
+            return window.alert("Sorry but this person doesn't have a music account :( ")
+            }
+            else {openInNewTab(plant.store.store_url)
+            }
+        }
     return (
-        <div>
-            <div>NAme the Category</div>
-            <div>Owner:</div>
-            <img alt="test" src="https://media.istockphoto.com/id/1000401600/photo/a-handsome-boy-in-a-plaid-shirt-blue-shirt-and-jeans-stands-on-a-gray-background-the-boy-is.jpg?b=1&s=170667a&w=0&k=20&c=r9AWyadQuyqq6WZNX0RW-1iCEPB9zkconvqSn60oArw="/>
-            <div>Where You Can Find a Plant like Me: </div>
+        <div className="pubPlantCard">
+            <div>{`${plant.name} the ${plant.species.species_name}`}</div>
+            <div>{`Owner: ${plant.user.first_name} ${plant.user.last_name}`}</div>
+            <img className="pubPlant" alt="test" src={plant.picture_url}/>
+            <div>You Can Find a Plant like Me At: <button onClick={handleDecision}>{`${plant.store.name}`}</button>{` in ${plant.store.location}`}</div>
         </div>
     )
 }

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_155504) do
   create_table "plants", force: :cascade do |t|
     t.string "name"
     t.string "picture_url"
-    t.datetime "last_watered"
+    t.date "last_watered"
     t.integer "user_id", null: false
     t.integer "store_id", null: false
     t.integer "species_id", null: false
