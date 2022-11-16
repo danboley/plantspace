@@ -52,6 +52,6 @@ code {
   box-shadow: 0 8px 6px -6px black;
 }
 .truePlantCon{
-  columns: 100px 3;
-  flex-flow: column wrap
+  /* columns: 100px 3;
+  flex-flow: column wrap */
 }
