@@ -35,6 +35,15 @@ function App() {
     .then((data) => setStores(data))
   },[])
 
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setCurrentUser(user));
+      }
+    });
+  }, []);
+
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj])
       }

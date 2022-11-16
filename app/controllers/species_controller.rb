@@ -1,11 +1,11 @@
 class SpeciesController < ApplicationController
+
   def index
     render json: Species.all, status: :ok
   end
 
   def create
-    species = @current_user.species.create!(spe_params)
-    render json: species, status: :created
+    render json: Species.create!(spe_params), status: :created
   end
 
   private

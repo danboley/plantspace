@@ -5,6 +5,10 @@ class UsersController < ApplicationController
         render json: User.all, status: :ok
     end
 
+    def show
+        render json: find_user, status: :ok
+    end
+
     # for autologin feat
     def show
         render json: @current_user

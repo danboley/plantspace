@@ -102,7 +102,6 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             }
         })
     }
-
     return (
         <div className='form-container'>
             <h1>Create Your Plant</h1>

@@ -4,21 +4,16 @@ import { useNavigate } from "react-router-dom";
 function Login ({updateUser}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
     const [errors, setErrors] = useState([]);
 
     let navigate = useNavigate();
 
     function onSubmit(e){
         e.preventDefault();
-        const user = {
-            firstName, 
-            lastName, 
+        const user = { 
             username,
             password
         }
-
         fetch(`/login`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -45,22 +40,6 @@ function Login ({updateUser}){
     return (
         <>
             <form onSubmit={onSubmit}>
-                <label> First Name </label>
-                <input 
-                  type="text" 
-                  name="first_name" 
-                  id="first_name" 
-                  value={firstName} 
-                  onChange={(e) => setFirstName(e.target.value)} 
-                />
-                <label> Last Name </label>
-                <input 
-                  type="text"
-                  name="last_name"
-                  id="last_name"
-                  value={lastName} 
-                  onChange={(e) => setLastName(e.target.value)} 
-                />
                 <label> UserName </label>
                 <input 
                   type="text"
