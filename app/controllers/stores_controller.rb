@@ -1,5 +1,4 @@
 class StoresController < ApplicationController
-
     def index
         render json: Store.all, status: :ok
     end
