@@ -1,18 +1,16 @@
+
 import PublicPlantCard from "./PublicPlantCard";
 import Search from "./Search";
 
 function PublicPlantContainer ({plants, search, setSearch}){
-    const renderPlants = plants.map((plant) => {
-        return <PublicPlantCard {...plant} plant={plant} key={plant.id}/>
-    })
-    return (
+
+    return (        
         <div>
             <Search setSearch={setSearch}/>
-            <div className="truePlantCon">
-                {/* <PublicPlantCard/> */}
-                {renderPlants}
-            </div>
-        </div>
+            {plants.map(plant => <PublicPlantCard  {...plant} plant={plant} key={plant.id}/>)}
+        </div>        
     )
 }
+
+
 export default PublicPlantContainer;

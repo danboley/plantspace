@@ -42,18 +42,18 @@ function App() {
     });
   }, []);
 
-      useEffect(()=>{
-        fetch(`/users/${currentUser.id}`)
-        .then(res => {
-            if(res.ok){
-                res.json().then(user => {
-                    setCurrentUser(user)
-                })
-            }else {
-                res.json().then(data => setErrors(data.error))
-            }
-        })
-    },[currentUser.id, plants])
+  useEffect(()=>{
+    fetch(`/users/${currentUser.id}`)
+     .then(res => {
+        if(res.ok){
+          res.json().then(user => {
+              setCurrentUser(user)
+            })
+        }else {
+            res.json().then(data => setErrors(data.error))
+        }
+    })
+  },[currentUser.id, plants])
 
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj]);
@@ -83,8 +83,8 @@ function App() {
         <Routes>
             <Route exact path="/" element={<PublicPlantContainer plants={displayedPlants} setSearch={setSearch}/>} />
             <Route path="/PlantContainer" element={<UserContainer user={currentUser} deletePlant = {deletePlant} setPlants={setPlants} plants={plants} errors={errors} />} />
-            <Route exact path="/login" element={<Login updateUser={updateUser}/>} />
-            <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
+            <Route path="/login" element={<Login updateUser={updateUser}/>} />
+            <Route path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm user={currentUser} addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />
         </Routes>
     </div>

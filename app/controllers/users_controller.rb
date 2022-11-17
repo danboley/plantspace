@@ -5,9 +5,9 @@ class UsersController < ApplicationController
         render json: User.all, status: :ok
     end
 
-    def show
-        render json: find_user, status: :ok
-    end
+    # def show
+    #     render json: find_user, status: :ok
+    # end
 
     # for autologin feat
     def me
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     # modified for signup feat  
     def create
         user = User.create!(user_params)
-        # session[:user_id] = user.id
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 

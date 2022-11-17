@@ -28,7 +28,6 @@ function Signup({updateUser}){
       if (r.ok) {
         r.json().then((user) => {
          updateUser(user)
-         navigate(`/users/${user.id}`)
     });
       } else {
         r.json().then((err) => setErrors(err.errors));
