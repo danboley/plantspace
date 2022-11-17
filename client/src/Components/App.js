@@ -5,7 +5,6 @@ import NavBar from "./NavBar";
 import UserContainer from "./UserContainer";
 import PublicPlantContainer from "./PublicPlantContainer";
 import NewPlantForm from "./NewPlantForm";
-import Search from "./Search";
 import Login from "./Login";
 import Signup from "./Signup";
 
@@ -21,7 +20,7 @@ function App() {
     fetch("/plants")
     .then((res) => res.json())
     .then((data) => setPlants(data))
-  },[stores,species])
+  },[stores, species, currentUser])
 
   useEffect(() => {
     fetch("/species")
@@ -55,8 +54,8 @@ function App() {
                 res.json().then(data => setErrors(data.error))
             }
         })
-       
     },[currentUser.id, plants])
+
       function addNewPlant(newPlantObj){
         setPlants(prev => [...prev, newPlantObj]);
       }
@@ -84,7 +83,7 @@ function App() {
         <NavBar currentUser={currentUser} updateUser = {updateUser} />
         <Routes>
             <Route exact path="/" element={<PublicPlantContainer plants={displayedPlants} setSearch={setSearch}/>} />
-            <Route path="/PlantContainer" element={<UserContainer user={currentUser} deletePlant = {deletePlant}/>} />
+            <Route path="/PlantContainer" element={<UserContainer user={currentUser} deletePlant = {deletePlant} setPlants={setPlants} plants={plants} errors={errors} />} />
             <Route exact path="/login" element={<Login updateUser={updateUser}/>} />
             <Route exact path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm user={currentUser} addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />
