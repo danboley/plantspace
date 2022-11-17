@@ -13,4 +13,8 @@ class SpeciesController < ApplicationController
   def spe_params
     params.permit(:species_name, :frequency_watered, :care)
   end
+
+  def find_plant
+    Plant.find(params[:id])
+  end
 end

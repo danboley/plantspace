@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :plants
+  resources :plants 
   resources :stores, only: [:index, :create]
   resources :species, only: [:index, :create]
   resources :users

@@ -16,8 +16,8 @@ function NavBar ({currentUser, updateUser}){
     return (
         <nav className="navigation">
             <NavLink className={"navbtn"} exact to = "/">Home</NavLink>
-            <NavLink className={"navbtn"} exact to = "/PlantContainer">Your Plants</NavLink>
-            <NavLink className={"navbtn"} exact to = "/NewPlantForm">Add a New Plant</NavLink>
+            {currentUser?<NavLink className={"navbtn"} exact to = "/PlantContainer">Your Plants</NavLink>:null}
+            {currentUser?<NavLink className={"navbtn"} exact to = "/NewPlantForm">Add a New Plant</NavLink>:null}
             {!currentUser? <NavLink className={"navbtn"} exact to = "/login">Login/SignUp</NavLink>:
             <NavLink className={"navbtn"} exact to = "/" onClick={handleLogOut}>Log Out</NavLink>}
         </nav>
