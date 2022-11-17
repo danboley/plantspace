@@ -34,7 +34,6 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             location: newStoreLocation,
             store_url: newStoreUrl,
         }
-        console.log(newStoreObj)
         fetch(`/stores`, {
             method: `POST`,
             headers: {"Content-Type": "application/json"},
@@ -59,13 +58,11 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             frequency_watered: parseInt(newSpeciesWatered),
             care: newSpeciesCare,
         }
-        console.log(newSpeciesObj)
         fetch(`/species`, {
             method: `POST`,
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newSpeciesObj)
         }).then((r) => {
-            console.log(r)
             if (r.ok) {
               r.json().then((data) => {
                addNewSpecies(data)
@@ -148,7 +145,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <button onClick={expandFormSpecies}>Species</button>
                  {expandSpecies && 
                     <div onSubmit={handleSpecies}>
-                        <h4>Make a change to your appointment</h4>
+                        <h4>Add a new Species</h4>
                         <form className="form-input">
                             <input
                             type="text" 
@@ -172,7 +169,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <button onClick={expandFormStore}>Store</button>
                  {expandStore && 
                     <div onSubmit={handleStore}>
-                        <h4>Make a change to your appointment</h4>
+                        <h4>Add a new Store</h4>
                         <form className="form-input">
                             <input
                                 type="text" 

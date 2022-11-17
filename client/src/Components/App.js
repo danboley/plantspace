@@ -1,11 +1,9 @@
 import React, {useEffect, useState } from "react"
-
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
 import UserContainer from "./UserContainer";
 import PublicPlantContainer from "./PublicPlantContainer";
 import NewPlantForm from "./NewPlantForm";
-import Search from "./Search";
 import Login from "./Login";
 import Signup from "./Signup";
 

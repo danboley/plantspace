@@ -7,7 +7,7 @@ function PublicPlantContainer ({plants, search, setSearch}){
     })
     return (
         <div>
-            <Search/>
+            <Search setSearch={setSearch}/>
             <div className="truePlantCon">
                 {/* <PublicPlantCard/> */}
                 {renderPlants}
