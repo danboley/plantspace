@@ -117,9 +117,12 @@ code {
 }
 .searchbartrue{
   font-size: 20px;
-  background-color: rgb(47, 167, 21);
+  background-color: rgb(55, 199, 23);
   box-shadow: 0 8px 6px -6px rgb(7, 138, 59);
   color: white
+}
+.searchbartrue::placeholder{
+  color:white
 }
 .userContainer{
   display: grid;

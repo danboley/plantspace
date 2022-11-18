@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, {useState} from "react";
+import plantspace from "../pics/plantspace.png"
 
 function NavBar ({currentUser, updateUser}){
   const[isLoading, setIsLoading] = useState(false)
@@ -19,6 +20,8 @@ function NavBar ({currentUser, updateUser}){
 
     return (
         <nav className="navigation">
+          <img src={plantspace} alt="plantspace"></img>
+          <div></div>
             <NavLink className={"navbtn"} to = "/">Home</NavLink>
             {currentUser?<NavLink className={"navbtn"} to = "/PlantContainer">Your Plants</NavLink>:null}
             {currentUser?<NavLink className={"navbtn"} to = "/NewPlantForm">Add a New Plant</NavLink>:null}

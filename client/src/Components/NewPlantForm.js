@@ -131,7 +131,6 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <label htmlFor='storeDropdown'>Store </label>
                  <select className = "dropdown" id="storeId" name="storeDropdown" onChange={(e)=>{setNewStore(e.target.value)}}>
                     <option value=""> Select...</option>
-                    {console.log(stores)}
                     {stores && stores?.map((store) => {
                         return <option key={store.id} value={store.id}>{store.name}</option>
                         })}
@@ -148,7 +147,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <label>Last Watered</label>
                 <input 
                 className='form-container-input'
-                type="text" 
+                type="date" 
                 placeholder="YYYY-MM-DD" 
                 value={newWaterTime} 
                 onChange={(e) => setNewWaterTime(e.target.value)}/>
