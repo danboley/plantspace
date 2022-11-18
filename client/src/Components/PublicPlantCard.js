@@ -17,7 +17,7 @@ function PublicPlantCard ({plant}){
             <div>{`${plant.name} the ${plant.species.species_name}`}</div>
             <div>{`Owner: ${plant.user.first_name} ${plant.user.last_name}`}</div>
             <img className="pubPlantPic" alt="test" src={plant.picture_url}/>
-            <div>You Can Find a Plant like Me At: <button onClick={handleDecision}>{`${plant.store.name}`}</button>{` in ${plant.store.location}`}</div>
+            <div>You Can Find a Plant like Me At: <button className="pubButton" onClick={handleDecision}>{`${plant.store.name}`}</button>{` in ${plant.store.location}`}</div>
         </div>
     )
 }

@@ -152,13 +152,13 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 placeholder="YYYY-MM-DD" 
                 value={newWaterTime} 
                 onChange={(e) => setNewWaterTime(e.target.value)}/>
-                <button type='submit' className='submitButton'>Add Your Plant</button>
+                <button type='submit' className='buttonPretty'>Add Your Plant</button>
             </form>
             {errors? <div>{errors}</div>:null} 
             </div>    
 
-                <button onClick={expandFormSpecies}>Species</button>
-                <button onClick={expandFormStore}>Store</button>
+                <button className='buttonOtherPretty' onClick={expandFormSpecies}>Species</button>
+                <button className='buttonOtherPretty' onClick={expandFormStore}>Store</button>
                  {expandSpecies && 
                     <div className='trueForm' onSubmit={handleSpecies}>
                         <h4>Add a new Species</h4>
@@ -184,7 +184,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                             placeholder="What Care Does It Need..." 
                             value={newSpeciesCare} 
                             onChange={(e) => setNewSpeciesCare(e.target.value)}/>
-                            <button type='submit' className='submitButton'>Add Your Species</button>
+                            <button type='submit' className='buttonPretty'>Add Your Species</button>
                         </form>
                         {isLoading ? "Loading..." : null}
                     </div>
@@ -215,7 +215,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                                 placeholder="Store Website..." 
                                 value={newStoreUrl} 
                                 onChange={(e) => setNewStoreUrl(e.target.value)}/>
-                                <button type='submit' className='submitButton'>Add Your Store</button>
+                                <button type='submit' className='buttonPretty'>Add Your Store</button>
                         </form>
                         {isLoading ? "Loading..." : null}
                         
