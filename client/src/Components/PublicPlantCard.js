@@ -1,5 +1,5 @@
 
-function PublicPlantCard (plant){
+function PublicPlantCard ({plant}){
 
     const openInNewTab = url => {
         window.open(url, '_blank', 'noopener,noreferrer');
