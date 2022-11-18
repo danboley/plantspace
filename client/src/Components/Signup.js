@@ -46,7 +46,9 @@ function Signup({updateUser}){
 
 return (
     <div className='form-container'>
-        <form onSubmit={onSubmit}>
+        <form
+          className='trueForm'
+          onSubmit={onSubmit}>
             <label> First Name </label>
             <input
               className='form-container-input' 
@@ -83,13 +85,13 @@ return (
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />
-            <input type='submit' value='Sign up!' />
+            <button className='buttonPretty' type='submit' value='Sign up!'> Sign Up!</button>
 
         </form>
         {errors? <div className='errors'>{errors} </div>:null}
         <div> Already have an account? </div>
             <label>{isLoading ? "Loading..." : null }</label>
-            <button onClick={onClick}> Log in! </button>
+            <button className='buttonPretty' onClick={onClick}> Log in! </button>
     </div>
 
     // return(

@@ -42,7 +42,9 @@ function Login ({updateUser}){
 
     return (
         <div className='form-container'>
-            <form onSubmit={onSubmit}>
+            <form 
+                className='trueForm'
+                onSubmit={onSubmit}>
                 <label> UserName </label>
                 <input
                   className='form-container-input' 
@@ -61,13 +63,13 @@ function Login ({updateUser}){
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
                 />
-                <input type='submit' value='Log in!' />
+                <button className='buttonPretty' type='submit' value='Log in!'>Log In!</button>
                 
             </form>
             {errors? <div className='errors'>{errors}</div>:null} 
             <div> Are You a New user? </div>
                 <div>{isLoading ? "Loading..." : null }</div>
-                <button onClick = {onClick}> Sign up!</button>
+                <button className='buttonPretty' onClick = {onClick}> Sign up!</button>
         </div>
     )
  }

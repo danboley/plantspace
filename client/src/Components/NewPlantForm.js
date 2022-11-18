@@ -112,13 +112,15 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
         <div className='form-container'>
             <h1>Create Your Plant</h1>
             <div>
-            <form onSubmit={handleSubmit}>
+            <form className='trueForm' onSubmit={handleSubmit}>
+                <label>Plant Name</label>
                 <input 
                 className='form-container-input'
                 type="text" 
                 placeholder="Name of Plant..." 
                 value={newPlantName} 
                 onChange={(e) => setNewPlantName(e.target.value)}/>
+                <label>Plant Image</label>
                 <input 
                 className='form-container-input'
                 type="text" 
@@ -126,7 +128,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 value={newPicture} 
                 onChange={(e) => setNewPicture(e.target.value)}/>
 
-                <label htmlFor='storeDropdown'>Store: </label>
+                <label htmlFor='storeDropdown'>Store </label>
                  <select className = "dropdown" id="storeId" name="storeDropdown" onChange={(e)=>{setNewStore(e.target.value)}}>
                     <option value=""> Select...</option>
                     {console.log(stores)}
@@ -136,7 +138,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                  </select>
 
 
-                <label htmlFor='speciesDropdown'>Species: </label>
+                <label htmlFor='speciesDropdown'>Species </label>
                  <select className = "dropdown" id="speciesId" name="speciesDropdown" onChange={(e)=>{setNewSpecies(e.target.value)}}>
                     <option value=""> Select...</option>
                     {species?.map((specie) => {
