@@ -107,6 +107,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
     }
     if (stores.length < 1) return null
     
+
     return (
         <div className='form-container'>
             <h1>Create Your Plant</h1>
