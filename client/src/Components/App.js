@@ -14,6 +14,7 @@ function App() {
   const [search, setSearch] = useState("")
   const [currentUser, setCurrentUser] = useState(false)
   const [errors, setErrors] = useState(false)
+  const [lastWatered, setLastWatered] = useState(new Date().toISOString().slice(0, 10))
 
   useEffect(() => {
     fetch("/plants")
@@ -51,9 +52,17 @@ function App() {
         }
     })
     })
-  }, []);
+  }, [plants, lastWatered]);
 
-    
+  function updateWater(updatewatered){ 
+    const updatedwater = plants?.map((plant) => {
+      if(plant.id === updatewatered.id){
+          return (updatewatered)
+      } else 
+      return plant 
+  })
+  setPlants(updatedwater)
+ }
 
 
       function addNewPlant(newPlantObj){ 
@@ -83,7 +92,7 @@ function App() {
         <NavBar currentUser={currentUser} updateUser = {updateUser} />
         <Routes>
             <Route exact path="/" element={<PublicPlantContainer plants={displayedPlants} setSearch={setSearch}/>} />
-            <Route path="/PlantContainer" element={<UserContainer user={currentUser} deletePlant = {deletePlant} setPlants={setPlants} plants={currentUser?.plants} errors={errors} />} />
+            <Route path="/PlantContainer" element={<UserContainer user={currentUser} deletePlant = {deletePlant} setPlants={setPlants} plants={currentUser?.plants} errors={errors} lastWatered={lastWatered} updateWater={updateWater} />} />
             <Route path="/login" element={<Login updateUser={updateUser}/>} />
             <Route path="/signup" element={<Signup updateUser ={ updateUser} />} />
             <Route path="/NewPlantForm" element={<NewPlantForm user={currentUser} addNewPlant={addNewPlant} species={species} stores={stores} addNewStore={addNewStore} addNewSpecies={addNewSpecies}/>} />

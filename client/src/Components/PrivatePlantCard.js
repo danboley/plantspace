@@ -1,16 +1,7 @@
 import { useState } from "react"
 
-function PrivatePlantCard ({plant, deletePlant, setPlants}){
-    const [lastWatered, setLastWatered] = useState(new Date().toISOString().slice(0, 10))
+function PrivatePlantCard ({plant, deletePlant, setPlants, updateWater, lastWatered}){
 
-    function updateWater(updatewatered){ 
-         if(plant.id === updatewatered.id){
-            setLastWatered(new Date().toISOString().slice(0, 10))
-            return setPlants(updatewatered)
-        } else 
-        return plant
-     }
-     
         let d1 = new Date(lastWatered)
         // replace last_watered with frequency_watered
         let d2 = new Date(plant.last_watered)

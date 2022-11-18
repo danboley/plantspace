@@ -67,8 +67,8 @@ function Login ({updateUser}){
                 
             </form>
             {errors? <div className='errors'>{errors}</div>:null} 
+            <div>{isLoading ? "Loading..." : null }</div>
             <div> Are You a New user? </div>
-                <div>{isLoading ? "Loading..." : null }</div>
                 <button className='buttonPretty' onClick = {onClick}> Sign up!</button>
         </div>
     )
