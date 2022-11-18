@@ -38,16 +38,15 @@ function PrivatePlantCard ({plant, deletePlant, setPlants}){
         })
         deletePlant(plant)
     }
-
+    console.log(plant.last_watered)
     return (
         <div className = "priCard">
             <div>{plant.name}</div>
-            <div>Type of Plant: </div>
             <img className="priImage" alt="placeholder" src={plant.picture_url}></img>
             <div>Last Watered: {plant.last_watered} </div>
-            <div >Days till Next Water: {daysNotWatered}</div>
-            <button onClick={handleWater}>Need Water</button>
-            <button className="remove" onClick={handleDeleteClick}>Delete Plant</button>
+            <div >Days Since Last Watered: {daysNotWatered}</div>
+            <button id="buttonDiv" className="water" onClick={handleWater}>Water Plant</button>
+            <button id="buttonDiv" className="remove" onClick={handleDeleteClick}>Delete Plant</button>
         </div>
     )
 }

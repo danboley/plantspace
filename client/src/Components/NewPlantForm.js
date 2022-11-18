@@ -12,10 +12,11 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
     const [newSpeciesName, setNewSpeciesName] = useState("")
     const [newSpeciesWatered, setNewSpeciesWatered] = useState("")
     const [newSpeciesCare, setNewSpeciesCare] = useState("")
-    const [newWaterTime, setNewWaterTime] = useState(new Date())
+    const [newWaterTime, setNewWaterTime] = useState("")
     const [expandSpecies, setExpandSpecies] = useState(false)
     const [expandStore, setExpandStore] = useState(false)
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
     let navigate = useNavigate();
 
@@ -29,6 +30,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
 
     function handleStore(e){
         e.preventDefault()
+        setIsLoading(true)
         const newStoreObj= {
             name: newStoreName,
             location: newStoreLocation,
@@ -39,7 +41,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newStoreObj)
         }).then((r) => {
-            console.log(r)
+            setIsLoading(false)
             if (r.ok) {
               r.json().then((data) => {
                addNewStore(data)
@@ -53,6 +55,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
 
     function handleSpecies(e){
         e.preventDefault()
+        setIsLoading(true)
         const newSpeciesObj= {
             species_name: newSpeciesName,
             frequency_watered: parseInt(newSpeciesWatered),
@@ -63,6 +66,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newSpeciesObj)
         }).then((r) => {
+            setIsLoading(false)
             if (r.ok) {
               r.json().then((data) => {
                addNewSpecies(data)
@@ -76,6 +80,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
 
     function handleSubmit(e){
         e.preventDefault()
+        setIsLoading(true)
         const newPlantObj= {
             name: newPlantName,
             picture_url: newPicture,
@@ -89,6 +94,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newPlantObj)
         }).then((r) => {
+            setIsLoading(false)
             if (r.ok) {
               r.json().then((user) => {
                addNewPlant(user)
@@ -99,17 +105,21 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             }
         })
     }
+    if (stores.length < 1) return null
+    
     return (
         <div className='form-container'>
             <h1>Create Your Plant</h1>
             <div>
             <form onSubmit={handleSubmit}>
                 <input 
+                className='form-container-input'
                 type="text" 
                 placeholder="Name of Plant..." 
                 value={newPlantName} 
                 onChange={(e) => setNewPlantName(e.target.value)}/>
                 <input 
+                className='form-container-input'
                 type="text" 
                 placeholder="URL for Plant Photo..." 
                 value={newPicture} 
@@ -118,7 +128,8 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <label htmlFor='storeDropdown'>Store: </label>
                  <select className = "dropdown" id="storeId" name="storeDropdown" onChange={(e)=>{setNewStore(e.target.value)}}>
                     <option value=""> Select...</option>
-                    {stores.map((store) => {
+                    {console.log(stores)}
+                    {stores && stores?.map((store) => {
                         return <option key={store.id} value={store.id}>{store.name}</option>
                         })}
                  </select>
@@ -127,14 +138,15 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <label htmlFor='speciesDropdown'>Species: </label>
                  <select className = "dropdown" id="speciesId" name="speciesDropdown" onChange={(e)=>{setNewSpecies(e.target.value)}}>
                     <option value=""> Select...</option>
-                    {species.map((specie) => {
+                    {species?.map((specie) => {
                         return <option key={specie.id} value={specie.id}>{specie.species_name}</option>
                         })}
                  </select>
-
+                <label>Last Watered</label>
                 <input 
-                type="date" 
-                placeholder="Last Time Your Plant Was Watered..." 
+                className='form-container-input'
+                type="text" 
+                placeholder="YYYY-MM-DD" 
                 value={newWaterTime} 
                 onChange={(e) => setNewWaterTime(e.target.value)}/>
                 <button type='submit' className='submitButton'>Add Your Plant</button>
@@ -143,51 +155,66 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
             </div>    
 
                 <button onClick={expandFormSpecies}>Species</button>
+                <button onClick={expandFormStore}>Store</button>
                  {expandSpecies && 
-                    <div onSubmit={handleSpecies}>
+                    <div className='trueForm' onSubmit={handleSpecies}>
                         <h4>Add a new Species</h4>
                         <form className="form-input">
+                            <label>Species Name</label>
                             <input
+                            className='form-container-input'
                             type="text" 
                             placeholder="Name of Species..." 
                             value={newSpeciesName} 
                             onChange={(e) => setNewSpeciesName(e.target.value)}/>
+                            <label>Water Frequency</label>
                             <input
+                            className='form-container-input'
                             type="text" 
                             placeholder="Level Of Water Needed Out Of 10..." 
                             value={newSpeciesWatered} 
                             onChange={(e) => setNewSpeciesWatered(e.target.value)}/>
+                            <label>Care Instructions</label>
                             <input
+                            className='form-container-input'
                             type="text" 
                             placeholder="What Care Does It Need..." 
                             value={newSpeciesCare} 
                             onChange={(e) => setNewSpeciesCare(e.target.value)}/>
                             <button type='submit' className='submitButton'>Add Your Species</button>
                         </form>
+                        {isLoading ? "Loading..." : null}
                     </div>
                  }  
-                <button onClick={expandFormStore}>Store</button>
+                
                  {expandStore && 
-                    <div onSubmit={handleStore}>
+                    <div className='trueForm' onSubmit={handleStore}>
                         <h4>Add a new Store</h4>
                         <form className="form-input">
+                            <label>Store Name</label>
                             <input
+                                className='form-container-input'
                                 type="text" 
                                 placeholder="Name of Store..." 
                                 value={newStoreName} 
                                 onChange={(e) => setNewStoreName(e.target.value)}/>
+                                <label>Store Location</label>
                                 <input
+                                className='form-container-input'
                                 type="text" 
                                 placeholder="Store Location..." 
                                 value={newStoreLocation} 
                                 onChange={(e) => setNewStoreLocation(e.target.value)}/>
+                                <label>Store Website</label>
                                 <input
+                                className='form-container-input'
                                 type="text" 
                                 placeholder="Store Website..." 
                                 value={newStoreUrl} 
                                 onChange={(e) => setNewStoreUrl(e.target.value)}/>
                                 <button type='submit' className='submitButton'>Add Your Store</button>
                         </form>
+                        {isLoading ? "Loading..." : null}
                         
                     </div>
                  }        

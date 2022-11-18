@@ -5,11 +5,13 @@ function Login ({updateUser}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
     let navigate = useNavigate();
 
     function onSubmit(e){
         e.preventDefault();
+        setIsLoading(true)
         const user = { 
             username,
             password
@@ -20,6 +22,7 @@ function Login ({updateUser}){
             body: JSON.stringify(user)
         })
         .then(r => {
+            setIsLoading(false)
             if(r.ok){
                 r.json().then(user => {
                     navigate(`/`)
@@ -38,10 +41,11 @@ function Login ({updateUser}){
     }
 
     return (
-        <>
+        <div className='form-container'>
             <form onSubmit={onSubmit}>
                 <label> UserName </label>
-                <input 
+                <input
+                  className='form-container-input' 
                   type="text"
                   name="username" 
                   id="username" 
@@ -49,7 +53,8 @@ function Login ({updateUser}){
                   onChange={(e) => setUsername(e.target.value)} 
                 />
                 <label> Password </label>
-                <input 
+                <input
+                  className='form-container-input' 
                   type="text" 
                   name="password" 
                   id="password" 
@@ -57,11 +62,13 @@ function Login ({updateUser}){
                   onChange={(e) => setPassword(e.target.value)} 
                 />
                 <input type='submit' value='Log in!' />
-                <label> New user? </label>
-                <button onClick = {onClick}> Sign up!</button>
+                
             </form>
-            {errors? <div>{errors}</div>:null} 
-        </>
+            {errors? <div className='errors'>{errors}</div>:null} 
+            <div> Are You a New user? </div>
+                <div>{isLoading ? "Loading..." : null }</div>
+                <button onClick = {onClick}> Sign up!</button>
+        </div>
     )
  }
 export default Login;

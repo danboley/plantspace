@@ -12,7 +12,7 @@ class PlantsController < ApplicationController
 
   def create
     plant = @current_user.plants.create!(plant_params)
-    render json: plant, status: :created
+    render json: @current_user.plants, status: :created
   end
 
   def update

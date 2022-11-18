@@ -7,7 +7,9 @@ function PublicPlantContainer ({plants, search, setSearch}){
     return (        
         <div>
             <Search setSearch={setSearch}/>
-            {plants.map(plant => <PublicPlantCard  {...plant} plant={plant} key={plant.id}/>)}
+            <div className="truePlantCon">
+                {plants?.map(plant => <PublicPlantCard  {...plant} plant={plant} key={plant.id}/>)}
+            </div>
         </div>        
     )
 }

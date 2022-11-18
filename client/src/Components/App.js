@@ -19,7 +19,7 @@ function App() {
     fetch("/plants")
     .then((res) => res.json())
     .then((data) => setPlants(data))
-  },[stores, species, currentUser])
+  },[])
 
   useEffect(() => {
     fetch("/species")
@@ -39,11 +39,8 @@ function App() {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
       }
-    });
-  }, []);
-
-  useEffect(()=>{
-    fetch(`/users/${currentUser.id}`)
+    }).then(() => {
+      fetch(`/users/${currentUser.id}`)
      .then(res => {
         if(res.ok){
           res.json().then(user => {
@@ -53,10 +50,15 @@ function App() {
             res.json().then(data => setErrors(data.error))
         }
     })
-  },[currentUser.id, plants])
+    })
+  }, []);
 
-      function addNewPlant(newPlantObj){
-        setPlants(prev => [...prev, newPlantObj]);
+    
+
+
+      function addNewPlant(newPlantObj){ 
+        console.log(newPlantObj)
+        setPlants(prev => [ ...newPlantObj]);
       }
       
       function addNewStore(newStoreObj){
@@ -74,8 +76,8 @@ function App() {
 
       const updateUser = (user) => setCurrentUser(user)
 
-      const displayedPlants = plants.filter((plant) => {
-        return plant.name?.toLowerCase().includes(search.toLowerCase())
+      const displayedPlants = plants?.filter((plant) => {
+        return plant?.name?.toLowerCase().includes(search.toLowerCase())
       })
   return (
     <div className="App">

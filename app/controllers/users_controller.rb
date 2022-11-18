@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
+    # skip_before_action :authorize, only: :show
 
     def index
         render json: User.all, status: :ok
     end
 
-    # def show
-    #     render json: find_user, status: :ok
-    # end
+    def show
+        render json: find_user, status: :ok
+    end
 
     # for autologin feat
     def me
