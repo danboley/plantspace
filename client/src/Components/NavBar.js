@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, {useState} from "react";
-import plantspace from "../pics/plantspace.png"
+import plantspace from "../pics/plantspace2.png"
 
 function NavBar ({currentUser, updateUser}){
   const[isLoading, setIsLoading] = useState(false)

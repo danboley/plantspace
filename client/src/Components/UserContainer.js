@@ -5,9 +5,8 @@ function PlantContainer ({ lastWatered, updateWater, deletePlant, setPlants, pla
 
     return (
         <div>
-            <div className="plantTitle">Your Plants</div>
+            <div className="plantTitle">Your Plants:</div>
                 <div className="userContainer">
-                    {console.log(plants)}
                     {plants?.map(personalPlant => <PrivatePlantCard lastWatered={lastWatered} updateWater={updateWater} {...personalPlant} plant={personalPlant} key={personalPlant.id} deletePlant={deletePlant} setPlants={setPlants} />)}
                 </div>
         

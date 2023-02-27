@@ -110,17 +110,17 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
 
     return (
         <div className='form-container'>
-            <h1>Create Your Plant</h1>
+            <h1 className="plantTitle">Create Your Plant:</h1>
             <div>
             <form className='trueForm' onSubmit={handleSubmit}>
-                <label>Plant Name</label>
+                <label>Plant Name:</label>
                 <input 
                 className='form-container-input'
                 type="text" 
                 placeholder="Name of Plant..." 
                 value={newPlantName} 
                 onChange={(e) => setNewPlantName(e.target.value)}/>
-                <label>Plant Image</label>
+                <label>Plant Image:</label>
                 <input 
                 className='form-container-input'
                 type="text" 
@@ -128,7 +128,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 value={newPicture} 
                 onChange={(e) => setNewPicture(e.target.value)}/>
 
-                <label htmlFor='storeDropdown'>Store </label>
+                <label htmlFor='storeDropdown'>Store: </label>
                  <select className = "dropdown" id="storeId" name="storeDropdown" onChange={(e)=>{setNewStore(e.target.value)}}>
                     <option value=""> Select...</option>
                     {stores && stores?.map((store) => {
@@ -137,14 +137,14 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                  </select>
 
 
-                <label htmlFor='speciesDropdown'>Species </label>
+                <label htmlFor='speciesDropdown'>Species: </label>
                  <select className = "dropdown" id="speciesId" name="speciesDropdown" onChange={(e)=>{setNewSpecies(e.target.value)}}>
                     <option value=""> Select...</option>
                     {species?.map((specie) => {
                         return <option key={specie.id} value={specie.id}>{specie.species_name}</option>
                         })}
                  </select>
-                <label>Last Watered</label>
+                <label>Last Watered:</label>
                 <input 
                 className='form-container-input'
                 type="date" 
@@ -152,6 +152,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 value={newWaterTime} 
                 onChange={(e) => setNewWaterTime(e.target.value)}/>
                 <button type='submit' className='buttonPretty'>Add Your Plant</button>
+                <h5 id='directions'> To add an new store or species click here:</h5>
             </form>
             {errors? <div>{errors}</div>:null} 
             </div>    
@@ -160,7 +161,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 <button className='buttonOtherPretty' onClick={expandFormStore}>Store</button>
                  {expandSpecies && 
                     <div className='trueForm' onSubmit={handleSpecies}>
-                        <h4>Add a new Species</h4>
+                        <h4>Add a New Species:</h4>
                         <form className="form-input">
                             <label>Species Name</label>
                             <input
@@ -191,7 +192,7 @@ function NewPlantForm ({addNewPlant, addNewStore, addNewSpecies, stores, species
                 
                  {expandStore && 
                     <div className='trueForm' onSubmit={handleStore}>
-                        <h4>Add a new Store</h4>
+                        <h4>Add a New Store:</h4>
                         <form className="form-input">
                             <label>Store Name</label>
                             <input

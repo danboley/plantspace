@@ -36,8 +36,8 @@ function PrivatePlantCard ({plant, deletePlant, setPlants, updateWater, lastWate
             <img className="priImage" alt="placeholder" src={plant.picture_url}></img>
             <div className="otherText">Last Watered: {plant.last_watered} </div>
             <div className="otherText" >Days Since Last Watered: {daysNotWatered}</div>
-            <button id="buttonDiv" className="water" onClick={handleWater}>Water Plant</button>
-            <button id="buttonDiv" className="remove" onClick={handleDeleteClick}>Delete Plant</button>
+            <button className="buttonDiv" id="water" onClick={handleWater}>Water Plant</button>
+            <button className="buttonDiv" id="remove" onClick={handleDeleteClick}>Delete Plant</button>
         </div>
     )
 }

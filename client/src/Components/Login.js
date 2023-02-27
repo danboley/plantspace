@@ -45,7 +45,7 @@ function Login ({updateUser}){
             <form 
                 className='trueForm'
                 onSubmit={onSubmit}>
-                <label> UserName </label>
+                <label> Username: </label>
                 <input
                   className='form-container-input' 
                   type="text"
@@ -54,7 +54,7 @@ function Login ({updateUser}){
                   value={username} 
                   onChange={(e) => setUsername(e.target.value)} 
                 />
-                <label> Password </label>
+                <label> Password: </label>
                 <input
                   className='form-container-input' 
                   type="password" 
@@ -68,7 +68,7 @@ function Login ({updateUser}){
             </form>
             {errors? <div className='errors'>{errors}</div>:null} 
             <div>{isLoading ? "Loading..." : null }</div>
-            <div> Are You a New user? </div>
+            <div> Are You a New User? </div>
                 <button className='buttonPretty' onClick = {onClick}> Sign up!</button>
         </div>
     )

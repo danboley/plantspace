@@ -49,7 +49,7 @@ return (
         <form
           className='trueForm'
           onSubmit={onSubmit}>
-            <label> First Name </label>
+            <label> First Name: </label>
             <input
               className='form-container-input' 
               type="text" 
@@ -58,7 +58,7 @@ return (
               value={firstName} 
               onChange={(e) => setFirstName(e.target.value)} 
             />
-            <label> Last Name </label>
+            <label> Last Name: </label>
             <input 
               className='form-container-input'
               type="text"
@@ -67,7 +67,7 @@ return (
               value={lastName} 
               onChange={(e) => setLastName(e.target.value)} 
             />
-            <label> UserName </label>
+            <label> Username: </label>
             <input 
               className='form-container-input'
               type="text"
@@ -76,7 +76,7 @@ return (
               value={username} 
               onChange={(e) => setUsername(e.target.value)} 
             />
-            <label> Password </label>
+            <label> Password: </label>
             <input
               className='form-container-input' 
               type="text" 
